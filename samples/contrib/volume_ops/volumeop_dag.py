@@ -14,7 +14,7 @@
 
 
 import kfp.dsl as dsl
-
+from kubernetes import client as k8s_client
 
 @dsl.pipeline(
     name="Volume Op DAG",
@@ -51,6 +51,8 @@ def volume_op_dag():
         arguments=["cat /mnt/file1 /mnt/file2"],
         pvolumes={"/mnt": vop.volume.after(step1, step2)}
     )
+
+    dsl.get_pipeline_conf().set_image_pull_secrets([k8s_client.V1ObjectReference(name="secretA")])
 
 
 if __name__ == "__main__":

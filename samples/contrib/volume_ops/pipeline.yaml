@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: volume-op-dag-
-  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.6.2, pipelines.kubeflow.org/pipeline_compilation_time: '2021-05-24T14:43:36.719234',
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.6.2, pipelines.kubeflow.org/pipeline_compilation_time: '2021-05-24T14:59:46.038941',
     pipelines.kubeflow.org/pipeline_spec: '{"description": "The second example of
       the design doc.", "name": "Volume Op DAG"}'}
   labels: {pipelines.kubeflow.org/kfp_sdk_version: 1.6.2}
@@ -103,3 +103,5 @@ spec:
   arguments:
     parameters: []
   serviceAccountName: pipeline-runner
+  imagePullSecrets:
+  - {name: secretA}
