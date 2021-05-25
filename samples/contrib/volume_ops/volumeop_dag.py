@@ -14,6 +14,7 @@
 
 
 import kfp.dsl as dsl
+import kubernetes as k8s
 from kubernetes import client as k8s_client
 
 @dsl.pipeline(
@@ -39,7 +40,7 @@ def volume_op_dag():
         image="library/bash:4.4.23",
         command=["sh", "-c"],
         arguments=["echo 2 | tee /mnt/file2"],
-        pvolumes={"/mnt": step1.volume}
+        pvolumes={"/mnt": step1.pvolume}
     )
 
     step3 = dsl.ContainerOp(
